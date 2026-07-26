@@ -553,9 +553,26 @@ flex-direction:column;
 }
 #alarmIndicator {
 
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    margin-bottom: 20px;
+
+}
+
+#alarmIndicator img {
+
+    display: block;
+
+    width: 50px !important;
+    height: 50px !important;
+
+    max-width: 50px !important;
+    max-height: 50px !important;
+
+    object-fit: contain;
 
 }
 
