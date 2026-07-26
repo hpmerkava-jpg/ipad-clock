@@ -905,35 +905,33 @@ document
 
         }
 
-		if (this.audio) {
+        if (this.audio) {
 
-			this.audio.pause();
+		this.audio.pause();
 
-		}
 
-		this.audio = new Audio(
-			"sounds/" + getAlarmSound()
-		);
 
-		this.audio.loop = true;
+		this.audio.currentTime = 0;
+
 
 		const playPromise = this.audio.play();
+		
 
-		if (
-			playPromise &&
-			typeof playPromise.catch === "function"
-		) {
+            if (
+                playPromise &&
+                typeof playPromise.catch === "function"
+            ) {
 
-			playPromise.catch(error => {
+                playPromise.catch(error => {
 
-				console.warn(
-					"Preglednik nije dopustio automatsku reprodukciju alarma.",
-					error
-				);
+                    console.warn(
+                        "Preglednik nije dopustio automatsku reprodukciju alarma.",
+                        error
+                    );
 
-			});
+                });
 
-		}
+            }
 
         }
 
