@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="hr">
 
@@ -274,3 +275,89 @@ if ("serviceWorker" in navigator) {
 </body>
 
 </html>
+=======
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Clock">    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>iPad Clock</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CLOCK WRAPPER */
+#clock-wrapper {
+    text-align: center;
+    width: 100vw;
+}
+
+/* 🕒 BIG FULL WIDTH CLOCK */
+#time {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22vw; /* 🔥 POVEĆANO */
+    font-weight: 700;
+    color: white;
+    letter-spacing: 2vw;
+    width: 100vw;
+}
+
+/* DATE */
+#date {
+    margin-top: 30px;
+    font-size: 4vw;
+    color: white;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="clock-wrapper">
+    <div id="time"></div>
+    <div id="date"></div>
+</div>
+
+<script>
+function updateClock() {
+    const now = new Date();
+
+    document.getElementById("time").textContent =
+        now.toLocaleTimeString("hr-HR", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+
+    document.getElementById("date").textContent =
+        now.toLocaleDateString("hr-HR", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>
+>>>>>>> ff17eed0f2ff16d79dd635fd646240e711ff078f

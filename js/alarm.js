@@ -3,7 +3,7 @@ class AlarmManager {
     constructor() {
 
         this.alarms = [];
-
+		this.audioUnlocked = false;
         this.container = null;
         this.modal = null;
 
@@ -295,7 +295,27 @@ class AlarmManager {
                 this.closeModal();
 
             }
+		const unlockAudio = () => {
 
+			if (this.audioUnlocked || !this.audio) {
+				return;
+			}
+
+			this.audio.muted = true;
+			this.audio.play()
+				.then(() => {
+					this.audio.pause();
+					this.audio.currentTime = 0;
+					this.audio.muted = false;
+					this.audioUnlocked = true;
+					console.log("Audio otključan.");
+				})
+				.catch(console.warn);
+
+		};
+
+		document.addEventListener("touchstart", unlockAudio, { once: true });
+		document.addEventListener("click", unlockAudio, { once: true });
         });
 
     }
