@@ -84,7 +84,7 @@ class StorageManager {
 const storage = new StorageManager();
 
 const DEFAULT_SETTINGS = {
-    snoozeMinutes: 5
+    sound: "standard.mp3"
 };
 
 function loadSettings() {
@@ -113,17 +113,17 @@ function saveSettings(settings) {
 
 }
 
-function getSnoozeMinutes() {
+function getAlarmSound() {
 
-    return loadSettings().snoozeMinutes;
+    return loadSettings().sound;
 
 }
 
-function setSnoozeMinutes(minutes) {
+function setAlarmSound(sound) {
 
     const settings = loadSettings();
 
-    settings.snoozeMinutes = Number(minutes);
+    settings.sound = sound;
 
     saveSettings(settings);
 

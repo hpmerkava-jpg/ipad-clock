@@ -17,20 +17,15 @@ const pages = {
 };
 
 const navButtons = document.querySelectorAll(".nav");
-const snoozeSelect = document.getElementById("settingSnooze");
+const alarmSound = document.getElementById("alarmSound");
 
-if (
-    snoozeSelect &&
-    typeof storage.getSnoozeMinutes === "function"
-) {
+if (alarmSound) {
 
-    snoozeSelect.value = storage.getSnoozeMinutes();
+    alarmSound.value = getAlarmSound();
 
-    snoozeSelect.addEventListener("change", () => {
+    alarmSound.addEventListener("change", () => {
 
-        storage.setSnoozeMinutes(
-            Number(snoozeSelect.value)
-        );
+        setAlarmSound(alarmSound.value);
 
     });
 
