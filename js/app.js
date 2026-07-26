@@ -17,7 +17,24 @@ const pages = {
 };
 
 const navButtons = document.querySelectorAll(".nav");
+const snoozeSelect = document.getElementById("settingSnooze");
 
+if (
+    snoozeSelect &&
+    typeof storage.getSnoozeMinutes === "function"
+) {
+
+    snoozeSelect.value = storage.getSnoozeMinutes();
+
+    snoozeSelect.addEventListener("change", () => {
+
+        storage.setSnoozeMinutes(
+            Number(snoozeSelect.value)
+        );
+
+    });
+
+}
 function showPage(name){
 
     Object.values(pages).forEach(page=>{

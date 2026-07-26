@@ -24,7 +24,7 @@ content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="manifest" href="manifest.json">
 
 <link rel="apple-touch-icon" href="icons/icon-180.png">
-
+<link rel="icon" type="image/png" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
@@ -202,14 +202,76 @@ Datum
 
 <section id="page-settings" class="page">
 
-<h1>POSTAVKE</h1>
+    <div class="pageHeader">
+
+        <div class="pageHeaderLeft">
+
+            <button id="settingsMenuButton" class="iconButton">
+                ☰
+            </button>
+
+            <h1>Postavke</h1>
+
+        </div>
+
+    </div>
+
+    <div class="settingsGroup">
+
+        <h2>Alarm</h2>
+
+        <div class="settingsRow">
+
+            <label for="settingSnooze">
+                Snooze
+            </label>
+
+            <select id="settingSnooze">
+
+                <option value="5">5 minuta</option>
+                <option value="10">10 minuta</option>
+                <option value="15">15 minuta</option>
+
+            </select>
+
+        </div>
+
+    </div>
 
 </section>
 
 </main>
 
 </div>
+<div id="snoozeModal" class="modal hidden">
 
+    <div class="modalWindow">
+
+        <h2>Odgodi alarm</h2>
+
+        <div class="modalButtons" style="flex-direction:column; gap:12px;">
+
+            <button class="snoozeChoice" data-minutes="5">
+                5 minuta
+            </button>
+
+            <button class="snoozeChoice" data-minutes="10">
+                10 minuta
+            </button>
+
+            <button class="snoozeChoice" data-minutes="15">
+                15 minuta
+            </button>
+
+            <button id="btnCancelSnooze">
+                Odustani
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 <div id="alarmOverlay" class="hidden">
 
 <div id="alarmTime">

@@ -1,7 +1,7 @@
 class AlarmManager {
 
     constructor() {
-
+		this.snoozeModal = null;
         this.alarms = [];
 		this.audioUnlocked = false;
         this.container = null;
@@ -39,7 +39,7 @@ class AlarmManager {
 
         this.container = document.getElementById("alarmContainer");
         this.modal = document.getElementById("alarmModal");
-
+		this.snoozeModal = document.getElementById("snoozeModal");
         this.btnAdd = document.getElementById("btnAddAlarm");
         this.btnSave = document.getElementById("btnSaveAlarm");
         this.btnCancel = document.getElementById("btnCancelAlarm");
@@ -79,7 +79,7 @@ class AlarmManager {
 
 						this.audioUnlocked = true;
 
-						console.log("Audio otključan.");
+
 
 					})
 					.catch(() => {
@@ -314,28 +314,63 @@ class AlarmManager {
 
         if (this.btnSnooze) {
 
-            this.btnSnooze.addEventListener("click", () => {
+		this.btnSnooze.addEventListener("click", () => {
 
-                this.snoozeAlarmForFiveMinutes();
+			this.snoozeModal.classList.remove("hidden");
 
-            });
+		});
+
+            
 
         }
 
 
-        document.addEventListener("keydown", event => {
+		document.addEventListener("click", (event) => {
 
-            if (
-                event.key === "Escape" &&
-                !this.modal.classList.contains("hidden")
-            ) {
+			const button = event.target.closest(".snoozeChoice");
 
-                this.closeModal();
+			if (!button) {
+				return;
+			}
 
-            }
+			
 
-        });
+			const minutes = Number(button.dataset.minutes);
 
+			this.snoozeModal.classList.add("hidden");
+
+			this.snoozeAlarmFor(minutes);
+
+		});
+	document.addEventListener("click", (event) => {
+
+		const button = event.target.closest(".snoozeChoice");
+
+		if (!button) {
+			return;
+		}
+		
+
+			const minutes = Number(button.dataset.minutes);
+
+			this.snoozeModal.classList.add("hidden");
+
+			this.snoozeAlarmFor(minutes);
+
+
+		this.snoozeModal.classList.add("hidden");
+
+		this.snoozeAlarmFor(minutes);
+
+	});
+
+document
+    .getElementById("btnCancelSnooze")
+    .addEventListener("click", () => {
+
+        this.snoozeModal.classList.add("hidden");
+
+    });
     }
 
 
@@ -749,11 +784,7 @@ class AlarmManager {
     checkAlarms() {
 
         const now = new Date();
-		console.log(
-			"Provjera:",
-			now.getHours() + ":" + String(now.getMinutes()).padStart(2, "0"),
-			this.alarms
-		);
+
         this.checkSnooze(now);
 
         const minuteKey = [
@@ -776,18 +807,7 @@ class AlarmManager {
 
 		const alarm = this.alarms.find(item => {
 
-			console.log(
-				"Alarm:",
-				item.hour,
-				item.minute,
-				"Sada:",
-				currentHour,
-				currentMinute,
-				"Enabled:",
-				item.enabled,
-				"Repeat:",
-				item.repeat
-			);
+	
 
 			if (!item.enabled) {
 				return false;
@@ -917,57 +937,48 @@ class AlarmManager {
     }
 
 
-    snoozeAlarmForFiveMinutes() {
+snoozeAlarmFor(minutes) {
 
-        let alarm = this.alarms.find(
-            item => item.id === this.activeAlarmId
-        );
+    let alarm = this.alarms.find(
+        item => item.id === this.activeAlarmId
+    );
 
-        if (!alarm) {
+    if (!alarm) {
 
-            alarm = {
+        alarm = {
 
-                id: this.activeAlarmId || this.createId(),
+            id: this.activeAlarmId || this.createId(),
 
-                hour: new Date().getHours(),
+            hour: new Date().getHours(),
 
-                minute: new Date().getMinutes(),
+            minute: new Date().getMinutes(),
 
-                label: this.overlayName
-                    ? this.overlayName.textContent
-                    : "Alarm",
+            label: this.overlayName
+                ? this.overlayName.textContent
+                : "Alarm",
 
-                enabled: true,
+            enabled: true,
 
-                repeat: []
-
-            };
-
-        }
-
-        this.snoozeAlarm = {
-
-            ...alarm,
-
-            repeat: Array.isArray(alarm.repeat)
-                ? [...alarm.repeat]
-                : []
+            repeat: []
 
         };
 
-        this.snoozeUntil = Date.now() + 5 * 60 * 1000;
-
-        this.stopAudio();
-
-        if (this.overlay) {
-
-            this.overlay.classList.add("hidden");
-
-        }
-
-        this.activeAlarmId = null;
-
     }
+
+    this.snoozeAlarm = {
+        ...alarm,
+        repeat: [...alarm.repeat]
+    };
+
+    this.snoozeUntil = Date.now() + minutes * 60 * 1000;
+
+    this.stopAudio();
+
+    this.overlay.classList.add("hidden");
+
+    this.activeAlarmId = null;
+
+}
 
 
     stopAudio() {

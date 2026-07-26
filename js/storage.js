@@ -82,3 +82,49 @@ class StorageManager {
 }
 
 const storage = new StorageManager();
+
+const DEFAULT_SETTINGS = {
+    snoozeMinutes: 5
+};
+
+function loadSettings() {
+
+    try {
+
+        return {
+            ...DEFAULT_SETTINGS,
+            ...JSON.parse(localStorage.getItem("ipadClock.settings") || "{}")
+        };
+
+    } catch {
+
+        return { ...DEFAULT_SETTINGS };
+
+    }
+
+}
+
+function saveSettings(settings) {
+
+    localStorage.setItem(
+        "ipadClock.settings",
+        JSON.stringify(settings)
+    );
+
+}
+
+function getSnoozeMinutes() {
+
+    return loadSettings().snoozeMinutes;
+
+}
+
+function setSnoozeMinutes(minutes) {
+
+    const settings = loadSettings();
+
+    settings.snoozeMinutes = Number(minutes);
+
+    saveSettings(settings);
+
+}
