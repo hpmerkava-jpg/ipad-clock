@@ -21,7 +21,7 @@ class AlarmManager {
 
         this.btnSnooze = null;
         this.btnStop = null;
-
+		this.alarmIndicator = null;
         this.audio = null;
 
         this.editingAlarmId = null;
@@ -54,7 +54,7 @@ class AlarmManager {
 
         this.btnSnooze = document.getElementById("btnSnooze");
         this.btnStop = document.getElementById("btnStop");
-
+		this.alarmIndicator = document.getElementById("alarmIndicator");
 		this.audio = new Audio("sounds/classic.mp3");
 		this.audio.loop = true;
 		this.audio.preload = "auto";
@@ -663,7 +663,21 @@ document
             .replaceAll("'", "&#039;");
 
     }
+	updateAlarmIndicator() {
 
+		if (!this.alarmIndicator) {
+			return;
+		}
+
+		const hasEnabledAlarm =
+			this.alarms.some(alarm => alarm.enabled);
+
+		this.alarmIndicator.classList.toggle(
+			"hidden",
+			!hasEnabledAlarm
+		);
+
+	}
 
     render() {
 
@@ -765,7 +779,7 @@ document
             this.container.appendChild(card);
 
         });
-
+		this.updateAlarmIndicator();
     }
 
 

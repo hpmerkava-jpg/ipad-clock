@@ -551,3 +551,16 @@ flex-direction:column;
     color: white;
 
 }
+#alarmIndicator {
+
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 10px;
+
+}
+
+#alarmIndicator.hidden {
+
+    display: none;
+
+}
