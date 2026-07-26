@@ -84,7 +84,7 @@ class StorageManager {
 const storage = new StorageManager();
 
 const DEFAULT_SETTINGS = {
-    sound: "standard.mp3"
+    sound: "classic.mp3"
 };
 
 function loadSettings() {

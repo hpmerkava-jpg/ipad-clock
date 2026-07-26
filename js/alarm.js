@@ -915,7 +915,7 @@ document
 
 
 		const playPromise = this.audio.play();
-		alert("sounds/" + getAlarmSound());
+		
 
             if (
                 playPromise &&
