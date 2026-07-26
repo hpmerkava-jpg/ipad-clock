@@ -919,6 +919,11 @@ document
 
 		const playPromise = this.audio.play();
 		alert("sounds/" + getAlarmSound());
+		this.audio.onerror = () => {
+
+			alert("Greška pri učitavanju: " + this.audio.src);
+
+		};
             if (
                 playPromise &&
                 typeof playPromise.catch === "function"
