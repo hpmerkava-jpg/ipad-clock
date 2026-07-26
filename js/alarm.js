@@ -56,7 +56,43 @@ class AlarmManager {
         this.btnStop = document.getElementById("btnStop");
 
         this.audio = document.getElementById("alarmAudio");
+		const unlockAudio = () => {
 
+			if (!this.audio || this.audioUnlocked) {
+				return;
+			}
+
+			this.audio.volume = 0;
+
+			const promise = this.audio.play();
+
+			if (promise) {
+
+				promise
+					.then(() => {
+
+						this.audio.pause();
+						this.audio.currentTime = 0;
+						this.audio.volume = 1;
+
+						this.audioUnlocked = true;
+
+						console.log("Audio otključan.");
+
+					})
+					.catch(() => {
+
+						this.audio.volume = 1;
+
+					});
+
+			}
+
+		};
+
+		document.addEventListener("touchstart", unlockAudio, { once: true });
+		document.addEventListener("pointerdown", unlockAudio, { once: true });
+		document.addEventListener("click", unlockAudio, { once: true });
         if (
             !this.container ||
             !this.modal ||
@@ -295,27 +331,7 @@ class AlarmManager {
                 this.closeModal();
 
             }
-		const unlockAudio = () => {
 
-			if (this.audioUnlocked || !this.audio) {
-				return;
-			}
-
-			this.audio.muted = true;
-			this.audio.play()
-				.then(() => {
-					this.audio.pause();
-					this.audio.currentTime = 0;
-					this.audio.muted = false;
-					this.audioUnlocked = true;
-					console.log("Audio otključan.");
-				})
-				.catch(console.warn);
-
-		};
-
-		document.addEventListener("touchstart", unlockAudio, { once: true });
-		document.addEventListener("click", unlockAudio, { once: true });
         });
 
     }
@@ -855,9 +871,11 @@ class AlarmManager {
 
         if (this.audio) {
 
-            this.audio.currentTime = 0;
+		this.audio.pause();
+		this.audio.currentTime = 0;
+		this.audio.load();
 
-            const playPromise = this.audio.play();
+		const playPromise = this.audio.play();
 
             if (
                 playPromise &&
