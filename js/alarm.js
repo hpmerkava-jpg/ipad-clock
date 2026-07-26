@@ -47,7 +47,7 @@ class AlarmManager {
         this.hourSelect = document.getElementById("alarmHour");
         this.minuteSelect = document.getElementById("alarmMinute");
         this.labelInput = document.getElementById("alarmLabel");
-
+		this.audio = new Audio("sounds/classic.mp3");
         this.overlay = document.getElementById("alarmOverlay");
         this.overlayTime = document.getElementById("alarmTime");
         this.overlayName = document.getElementById("alarmName");
@@ -911,19 +911,14 @@ document
 
 		this.audio.pause();
 
-		this.audio.src =
-			"sounds/" + getAlarmSound();
+
 
 		this.audio.currentTime = 0;
-		this.audio.load();
+
 
 		const playPromise = this.audio.play();
 		alert("sounds/" + getAlarmSound());
-		this.audio.onerror = () => {
 
-			alert("Greška pri učitavanju: " + this.audio.src);
-
-		};
             if (
                 playPromise &&
                 typeof playPromise.catch === "function"
