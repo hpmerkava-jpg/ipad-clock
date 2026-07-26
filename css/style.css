@@ -1,0 +1,493 @@
+/* ===== RESET ===== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#000;
+
+    color:#fff;
+
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+    -webkit-user-select:none;
+    user-select:none;
+
+}
+
+button,
+input,
+select{
+
+    font:inherit;
+
+}
+
+/* ===== APP ===== */
+
+#app{
+
+    display:flex;
+
+    width:100vw;
+    height:100vh;
+
+}
+
+/* ===== SIDEBAR ===== */
+
+#sidebar{
+
+    width:260px;
+
+    background:#111;
+
+    border-right:1px solid #222;
+
+    display:flex;
+
+    flex-direction:column;
+
+    transition:.25s;
+
+}
+
+#sidebar.hide{
+
+    margin-left:-260px;
+
+}
+
+#logo{
+
+    height:80px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    border-bottom:1px solid #222;
+
+}
+
+/* ===== MENU ===== */
+
+.nav{
+
+    height:68px;
+
+    border:none;
+
+    background:none;
+
+    color:#aaa;
+
+    text-align:left;
+
+    padding-left:24px;
+
+    font-size:22px;
+
+    transition:.2s;
+
+}
+
+.nav:hover{
+
+    background:#1b1b1b;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.nav.active{
+
+    background:#0A84FF;
+
+    color:white;
+
+}
+
+/* ===== MAIN ===== */
+
+#main{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    background:black;
+
+}
+
+/* ===== TOPBAR ===== */
+
+
+
+#menuButton{
+
+    width:52px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2a2a2a;
+
+    color:#fff;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+#menuButton:hover{
+
+    background:#3a3a3a;
+
+}
+
+#title{
+
+    margin-left:20px;
+
+    font-size:28px;
+
+    font-weight:600;
+
+}
+
+/* ===== PAGE ===== */
+
+.page{
+
+    display:none;
+
+    width:100%;
+
+    height:100%;
+
+    overflow:auto;
+
+    padding:40px;
+
+}
+
+.page.active{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* ===== CLOCK ===== */
+
+#clock{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+#time{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:23vw;
+
+    line-height:1;
+
+    letter-spacing:.5vw;
+
+}
+
+#date{
+
+    margin-top:30px;
+
+    font-size:2.5vw;
+
+    color:#999;
+
+}
+
+/* ===== HEADINGS ===== */
+
+h1{
+
+    margin-bottom:30px;
+
+    font-size:42px;
+
+}
+
+/* ===== ALARMS ===== */
+
+#alarmList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.alarmCard{
+
+    background:#181818;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.alarmLeft{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.alarmHour{
+
+    font-family:Orbitron;
+
+    font-size:48px;
+
+}
+
+.alarmLabel{
+
+    margin-top:8px;
+
+    color:#999;
+
+}
+
+.alarmRight{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+/* ===== BUTTON ===== */
+
+#newAlarm{
+
+    margin-top:30px;
+
+    align-self:center;
+
+    width:300px;
+
+    height:65px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#0A84FF;
+
+    color:white;
+
+    font-size:24px;
+
+}
+
+/* ===== OVERLAY ===== */
+
+#alarmOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:black;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.hidden{
+
+    display:none !important;
+
+}
+
+#alarmTime{
+
+    font-family:Orbitron;
+
+    font-size:16vw;
+
+}
+
+#alarmName{
+
+    margin-top:30px;
+
+    font-size:42px;
+
+}
+
+/* ===== OVERLAY BUTTONS ===== */
+
+.overlayButtons{
+
+    margin-top:70px;
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+.overlayButtons button{
+
+    width:220px;
+
+    height:90px;
+
+    border:none;
+
+    border-radius:18px;
+
+    color:white;
+
+    font-size:30px;
+
+}
+
+#btnSnooze{
+
+    background:#ff9500;
+
+}
+
+#btnStop{
+
+    background:#ff3b30;
+
+}
+
+/* ===== SETTINGS ===== */
+
+.settingsRow{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:25px;
+
+    border-bottom:1px solid #222;
+
+}
+
+/* ===== SCROLLBAR ===== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#333;
+
+    border-radius:10px;
+
+}
+
+/* ===== IPAD MINI ===== */
+
+@media (max-width:900px){
+
+#sidebar{
+
+    width:220px;
+
+}
+
+#time{
+
+    font-size:20vw;
+
+}
+
+#date{
+
+    font-size:4vw;
+
+}
+
+.page{
+
+display:none;
+
+}
+
+.page.active{
+
+display:flex;
+
+flex-direction:column;
+
+}

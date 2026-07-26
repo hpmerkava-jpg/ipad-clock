@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<title>iPad Clock</title>
+
+<meta name="theme-color" content="#000000">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<meta name="apple-mobile-web-app-title" content="Clock">
+
+<link rel="manifest" href="manifest.json">
+
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/alarm.css">
+
+</head>
+
+<body>
+
+<div id="app">
+
+<!-- SIDEBAR -->
+
+<aside id="sidebar">
+
+<div id="logo">
+
+CLOCK
+
+</div>
+
+<button class="nav active" data-page="clock">
+
+🕒 Sat
+
+</button>
+
+<button class="nav" data-page="alarm">
+
+⏰ Alarmi
+
+</button>
+
+<button class="nav" data-page="timer">
+
+⏳ Timer
+
+</button>
+
+<button class="nav" data-page="stopwatch">
+
+⏱ Štoperica
+
+</button>
+
+<button class="nav" data-page="settings">
+
+⚙ Postavke
+
+</button>
+
+</aside>
+
+<!-- MAIN -->
+
+<main id="main">
+
+
+
+<section id="page-clock" class="page active">
+
+<div id="clock">
+
+<div id="time">
+
+00:00
+
+</div>
+
+<div id="date">
+
+Datum
+
+</div>
+
+</div>
+
+</section>
+
+<section id="page-alarm" class="page">
+
+	<div class="pageHeader">
+
+		<div class="pageHeaderLeft">
+
+			<button id="menuButton" class="iconButton">
+				☰
+			</button>
+
+			<h1>Alarmi</h1>
+
+		</div>
+
+		<button id="btnAddAlarm" class="iconButton">
+			+
+		</button>
+
+	</div>
+    
+
+    <div id="alarmContainer">
+
+    </div>
+
+</section>
+
+<!-- MODAL -->
+
+<div id="alarmModal" class="modal hidden">
+
+    <div class="modalWindow">
+
+        <h2>Novi alarm</h2>
+
+        <div class="pickerRow">
+
+            <select id="alarmHour"></select>
+
+            <span>:</span>
+
+            <select id="alarmMinute"></select>
+
+        </div>
+
+        <input
+            id="alarmLabel"
+            type="text"
+            placeholder="Naziv alarma">
+
+        <div class="days">
+
+            <button class="day" data-day="1">P</button>
+            <button class="day" data-day="2">U</button>
+            <button class="day" data-day="3">S</button>
+            <button class="day" data-day="4">Č</button>
+            <button class="day" data-day="5">P</button>
+            <button class="day" data-day="6">S</button>
+            <button class="day" data-day="0">N</button>
+
+        </div>
+
+        <div class="modalButtons">
+
+            <button id="btnCancelAlarm">
+
+                Odustani
+
+            </button>
+
+            <button id="btnSaveAlarm">
+
+                Spremi
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<section id="page-timer" class="page">
+
+<h1>TIMER</h1>
+
+</section>
+
+<section id="page-stopwatch" class="page">
+
+<h1>ŠTOPERICA</h1>
+
+</section>
+
+<section id="page-settings" class="page">
+
+<h1>POSTAVKE</h1>
+
+</section>
+
+</main>
+
+</div>
+
+<div id="alarmOverlay" class="hidden">
+
+<div id="alarmTime">
+
+00:00
+
+</div>
+
+<div id="alarmName">
+
+Alarm
+
+</div>
+
+<div class="overlayButtons">
+
+<button id="btnSnooze">
+
+SNOOZE
+
+</button>
+
+<button id="btnStop">
+
+STOP
+
+</button>
+
+</div>
+
+</div>
+
+<audio
+id="alarmAudio"
+loop>
+
+<source
+src="sounds/classic.mp3"
+type="audio/mpeg">
+
+</audio>
+
+<script src="js/storage.js"></script>
+
+<script src="js/clock.js"></script>
+
+<script src="js/alarm.js"></script>
+
+<script src="js/app.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(() => console.log("Service Worker registriran."))
+            .catch(err => console.error(err));
+
+    });
+
+}
+</script>
+</body>
+
+</html>
