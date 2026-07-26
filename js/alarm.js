@@ -918,7 +918,7 @@ document
 		this.audio.load();
 
 		const playPromise = this.audio.play();
-
+		alert("sounds/" + getAlarmSound());
             if (
                 playPromise &&
                 typeof playPromise.catch === "function"
