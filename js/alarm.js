@@ -55,9 +55,7 @@ class AlarmManager {
         this.btnSnooze = document.getElementById("btnSnooze");
         this.btnStop = document.getElementById("btnStop");
 		this.alarmIndicator = document.getElementById("alarmIndicator");
-		this.audio = new Audio(
-			"sounds/" + getAlarmSound()
-		);
+
 		this.audio.loop = true;
 		this.audio.preload = "auto";
 		const unlockAudio = () => {
