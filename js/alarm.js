@@ -905,16 +905,17 @@ document
 
         }
 
-        if (this.audio) {
+		if (this.audio) {
 
-		this.audio.pause();
+			this.audio.pause();
 
+			this.audio.src = "sounds/" + getAlarmSound();
 
+			this.audio.load();
 
-		this.audio.currentTime = 0;
+			this.audio.currentTime = 0;
 
-
-		const playPromise = this.audio.play();
+			const playPromise = this.audio.play();
 		
 
             if (
