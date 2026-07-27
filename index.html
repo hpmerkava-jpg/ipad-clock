@@ -358,8 +358,37 @@ if ("serviceWorker" in navigator) {
     </div>
 
 </div>
+<!-- ===== CITY SELECT MODAL ===== -->
+<div id="cityModal" class="city-modal hidden">
+
+    <div class="city-modal-content">
+
+        <h2>Odaberi grad</h2>
+
+        <input
+            type="text"
+            id="citySearch"
+            placeholder="Upiši naziv grada..."
+            autocomplete="off">
+
+        <button id="useGpsBtn" class="city-button">
+            📍 Trenutna lokacija
+        </button>
+
+        <div id="cityResults"></div>
+
+        <button id="closeCityModal" class="city-close">
+            Zatvori
+        </button>
+
+    </div>
+
+</div>
 <script src="js/clock.js"></script>
 <script src="js/weather.js"></script>
+
+
+
 </body>
 
 </html>

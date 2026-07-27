@@ -106,3 +106,46 @@ function initWeather() {
 initWeather();
 
 setInterval(initWeather, 30 * 60 * 1000);
+
+// =========================
+// CITY MODAL
+// =========================
+
+const cityModal = document.getElementById("cityModal");
+const citySearch = document.getElementById("citySearch");
+const cityResults = document.getElementById("cityResults");
+const closeCityModal = document.getElementById("closeCityModal");
+const useGpsBtn = document.getElementById("useGpsBtn");
+
+
+function openCityModal() {
+
+    console.log(cityModal);
+
+    cityModal.classList.remove("hidden");
+    citySearch.focus();
+}
+
+function closeModal() {
+    cityModal.classList.add("hidden");
+    citySearch.value = "";
+    cityResults.innerHTML = "";
+}
+
+if (locationInfo) {
+    locationInfo.style.cursor = "pointer";
+    locationInfo.title = "Odaberi grad";
+    locationInfo.addEventListener("click", openCityModal);
+}
+
+if (closeCityModal) {
+    closeCityModal.addEventListener("click", closeModal);
+}
+
+if (cityModal) {
+    cityModal.addEventListener("click", (e) => {
+        if (e.target === cityModal) {
+            closeModal();
+        }
+    });
+}
