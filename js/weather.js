@@ -23,33 +23,28 @@ async function loadWeather(lat, lon) {
             `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`
         );
 
+        if (!weatherResponse.ok) {
+            throw new Error("Greška pri dohvatu vremena");
+        }
+
         const weather = await weatherResponse.json();
-
-        const geoResponse = await fetch(
-            `https://geocoding-api.open-meteo.com/v1/reverse?latitude=${lat}&longitude=${lon}&language=hr`
-        );
-
-        const geo = await geoResponse.json();
 
         const temp = Math.round(weather.current.temperature_2m);
         const icon = weatherIcon(weather.current.weather_code);
 
         weatherInfo.textContent = `${icon} ${temp}°C`;
 
-        if (geo.results && geo.results.length > 0) {
-
-            locationInfo.textContent = geo.results[0].name;
-
-        }
+        // Privremeno - samo da provjerimo radi li vrijeme
+        locationInfo.textContent = "Hrvatska";
 
     }
-	catch (err) {
+    catch (err) {
 
-		console.error("Weather error:", err);
+        console.error("Weather error:", err);
 
-		weatherInfo.textContent = "GREŠKA";
+        weatherInfo.textContent = "GREŠKA";
 
-	}
+    }
 
 }
 
