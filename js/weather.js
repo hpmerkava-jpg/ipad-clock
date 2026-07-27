@@ -34,8 +34,30 @@ async function loadWeather(lat, lon) {
 
         weatherInfo.textContent = `${icon} ${temp}°C`;
 
+		const cityResponse = await fetch(
+			`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&accept-language=hr`
+		);
+
+		if (cityResponse.ok) {
+
+			const city = await cityResponse.json();
+
+			locationInfo.textContent =
+				city.address.city ||
+				city.address.town ||
+				city.address.village ||
+				city.address.municipality ||
+				city.address.county ||
+				"Hrvatska";
+
+		} else {
+
+			locationInfo.textContent = "Hrvatska";
+
+		}
+
         // Privremeno - samo da provjerimo radi li vrijeme
-        locationInfo.textContent = "Hrvatska";
+        
 
     }
     catch (err) {
