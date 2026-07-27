@@ -634,8 +634,8 @@ flex-direction:column;
     backdrop-filter: blur(8px);
 
     color: #ffffff;
-
-    font-size: 40px;
+	font-family: 'Orbitron', sans-serif;
+    font-size: 35px;
 
     font-weight: 700;
 
