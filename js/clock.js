@@ -28,7 +28,7 @@ function updateClock() {
             now.getFullYear() + ".";
 
         dayDateInfo.textContent =
-            days[now.getDay()] + "  " + date;
+            days[now.getDay()] + ",  " + date;
     }
 }
 
