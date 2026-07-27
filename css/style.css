@@ -604,3 +604,71 @@ flex-direction:column;
     color: white;
 
 }
+
+/* ===========================
+   DONJA STATUSNA TRAKA
+=========================== */
+
+#statusBar {
+
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 48px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 24px;
+
+    box-sizing: border-box;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(8px);
+
+    color: #ffffff;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    z-index: 1000;
+
+}
+
+#weatherInfo,
+#locationInfo,
+#dateInfo {
+
+    white-space: nowrap;
+
+}
+
+#locationInfo {
+
+    text-align: center;
+
+    flex: 1;
+
+}
+
+#weatherInfo {
+
+    min-width: 140px;
+
+}
+
+#dateInfo {
+
+    min-width: 170px;
+
+    text-align: right;
+
+}

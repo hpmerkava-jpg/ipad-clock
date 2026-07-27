@@ -103,11 +103,7 @@ CLOCK
 
 </div>
 
-<div id="date">
 
-Datum
-
-</div>
 
 </div>
 
@@ -329,7 +325,7 @@ type="audio/mpeg">
 
 <script src="js/storage.js"></script>
 
-<script src="js/clock.js"></script>
+
 
 <script src="js/alarm.js"></script>
 
@@ -347,6 +343,22 @@ if ("serviceWorker" in navigator) {
 
 }
 </script>
+<div id="statusBar">
+
+    <div id="weatherInfo">
+        ☀️ 24°C
+    </div>
+
+    <div id="locationInfo">
+        Zagreb
+    </div>
+
+    <div id="dayDateInfo">
+        PET&nbsp;&nbsp;17.07.2026.
+    </div>
+
+</div>
+<script src="js/clock.js"></script>
 </body>
 
 </html>
