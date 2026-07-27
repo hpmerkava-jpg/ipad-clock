@@ -43,13 +43,13 @@ async function loadWeather(lat, lon) {
         }
 
     }
-    catch (err) {
+	catch (err) {
 
-        console.error(err);
+		console.error("Weather error:", err);
 
-        weatherInfo.textContent = "--°C";
+		weatherInfo.textContent = "GREŠKA";
 
-    }
+	}
 
 }
 
@@ -74,11 +74,13 @@ function initWeather() {
 
         },
 
-        () => {
+		(err) => {
 
-            weatherInfo.textContent = "--°C";
+			console.error("GPS:", err);
 
-        }
+			weatherInfo.textContent = "GPS";
+
+		}
 
     );
 
