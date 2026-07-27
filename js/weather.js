@@ -195,3 +195,16 @@ citySearch.addEventListener("input", () => {
     searchCity(citySearch.value.trim());
 
 });
+
+function useCurrentLocation() {
+
+    closeModal();
+
+    localStorage.removeItem("weatherMode");
+    localStorage.removeItem("weatherCity");
+    localStorage.removeItem("weatherLat");
+    localStorage.removeItem("weatherLon");
+
+    initWeather();
+}
+useGpsBtn.addEventListener("click", useCurrentLocation);
