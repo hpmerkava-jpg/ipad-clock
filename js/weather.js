@@ -149,3 +149,49 @@ if (cityModal) {
         }
     });
 }
+
+async function searchCity(query) {
+
+    if (query.length < 2) {
+        cityResults.innerHTML = "";
+        return;
+    }
+
+    const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(query)}&accept-language=hr&limit=10`
+    );
+
+    const cities = await response.json();
+
+    cityResults.innerHTML = "";
+
+    cities.forEach(city => {
+
+        const div = document.createElement("div");
+
+        div.className = "city-item";
+
+        div.textContent = city.display_name;
+
+        div.onclick = () => {
+
+            closeModal();
+
+            loadWeather(
+                parseFloat(city.lat),
+                parseFloat(city.lon)
+            );
+
+        };
+
+        cityResults.appendChild(div);
+
+    });
+
+}
+
+citySearch.addEventListener("input", () => {
+
+    searchCity(citySearch.value.trim());
+
+});
