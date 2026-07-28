@@ -683,17 +683,19 @@ document
 
         this.container.innerHTML = "";
 
-        if (this.alarms.length === 0) {
+		if (this.alarms.length === 0) {
 
-            this.container.innerHTML = `
-                <div class="alarmEmpty">
-                    Nema spremljenih alarma
-                </div>
-            `;
+			this.container.innerHTML = `
+				<div class="alarmEmpty">
+					Nema spremljenih alarma
+				</div>
+			`;
 
-            return;
+			this.updateAlarmIndicator();
 
-        }
+			return;
+
+		}
 
         this.alarms.forEach(alarm => {
 
