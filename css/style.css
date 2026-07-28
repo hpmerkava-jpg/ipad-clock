@@ -796,5 +796,11 @@ body > * {
 }
 
 body {
-    background: url("../icons/zagreb.jpg") center center / cover no-repeat !important;
+    background:
+		linear-gradient(
+        rgba(0,0,0,.55),
+        rgba(0,0,0,.75)
+    ),
+
+	url("../icons/zagreb.jpg") center center / cover no-repeat !important;
 }
