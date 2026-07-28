@@ -797,9 +797,9 @@ body > * {
 
 body {
     background:
-		linear-gradient(
-        rgba(0,0,0,.55),
-        rgba(0,0,0,.75)
+	linear-gradient(
+        rgba(0,0,0,.45),
+        rgba(0,0,0,.55)
     ),
 
 	url("../icons/zagreb.jpg") center center / cover no-repeat !important;
