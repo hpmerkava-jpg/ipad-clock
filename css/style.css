@@ -796,5 +796,5 @@ body > * {
 }
 
 body {
-    background: url("/icons/zagreb.jpg") center center / cover no-repeat !important;
+    background: url("../icons/zagreb.jpg") center center / cover no-repeat !important;
 }
