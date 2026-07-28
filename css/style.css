@@ -14,7 +14,9 @@ body{
 
     overflow:hidden;
 
-    background:#000;
+    background:
+        linear-gradient(rgba(0,0,0,.78), rgba(0,0,0,.78)),
+        url("/icons/zagreb.jpg") center center / cover no-repeat fixed;
 
     color:#fff;
 
@@ -136,10 +138,9 @@ select{
 
     flex-direction:column;
 
-    background:black;
+    background:transparent;
 
 }
-
 /* ===== TOPBAR ===== */
 
 
@@ -787,4 +788,13 @@ flex-direction:column;
 .city-item:hover{
 
     background:#303030;
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+body {
+    background: url("/icons/zagreb.jpg") center center / cover no-repeat !important;
 }
